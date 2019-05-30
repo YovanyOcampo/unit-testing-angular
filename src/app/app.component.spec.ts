@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { By } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
 
-describe('AppComponent', () => {
+fdescribe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>; // Para acceder a todos los componentes de la aplicación
   let component: AppComponent;
   beforeEach(async(() => {
