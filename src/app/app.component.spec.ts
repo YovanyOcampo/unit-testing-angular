@@ -1,8 +1,12 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { By } from '@angular/platform-browser';
+import { RouterOutlet } from '@angular/router';
 
 describe('AppComponent', () => {
+  let fixture: ComponentFixture<AppComponent>; // Para acceder a todos los componentes de la aplicación
+  let component: AppComponent;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -14,22 +18,15 @@ describe('AppComponent', () => {
     }).compileComponents();
   }));
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent); // Creamos una nueva instancia de nuestro AppComponent
+    component = fixture.debugElement.componentInstance; // Almaceno en fixture una instancia del componente antes de cada prueba
   });
 
-  it(`should have as title 'unit-testing-angular'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('unit-testing-angular');
-  });
-
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to unit-testing-angular!');
+  // Unit testing for router-outlet
+  it('Should have a router outlet', () => {
+    const debugElement = fixture.debugElement.query(By.directive(RouterOutlet)); 
+    // Hacemos el query mediante By para verificar la existencia de la directiva RouterOutlet
+    expect(debugElement).not.toBeNull();
   });
 });
